@@ -14,6 +14,7 @@ pizzaJson.map((item, index) => {
     pizzaItem.querySelector('.pizza-item--desc').innerHTML = item.description;
     pizzaItem.querySelector('a').addEventListener('click', (e) => {
         e.preventDefault();
+
         let key = e.target.closest('.pizza-item').getAttribute('data-key');
         modalQuantity = 1;
 
@@ -45,3 +46,15 @@ pizzaJson.map((item, index) => {
 
     selectElement('.pizza-area').append(pizzaItem);
 });
+
+// Eventos do modal
+const closeModal = () => {
+    selectElement('.pizzaWindowArea').style.opacity = 0;
+    setTimeout(() => {
+        selectElement('.pizzaWindowArea').style.display = 'none';
+    }, 500);
+}
+
+selectElements('.pizzaInfo--cancelButton, .pizzaInfo--cancelMobileButton').forEach((item) => {
+    item.addEventListener('click', closeModal);
+})
