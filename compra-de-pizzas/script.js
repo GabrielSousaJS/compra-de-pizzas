@@ -103,6 +103,16 @@ selectElement('.pizzaInfo--addButton').addEventListener('click', () => {
     closeModal();
 });
 
+selectElement('.menu-openner').addEventListener('click', () => {
+    if (cart.length > 0) {
+        selectElement('aside').style.left = '0';
+    }
+});
+
+selectElement('.menu-closer').addEventListener('click', () => {
+    selectElement('aside').style.left = '100vw'
+})
+
 const updateCart = () => {
     if (cart.length > 0) {
         selectElement('aside').classList.add('show');
@@ -113,6 +123,8 @@ const updateCart = () => {
         let total = 0;
 
         for (let i in cart) {
+            selectElement('.menu-opnner span').innerHTML = cart.length;
+
             let pizzaItem = pizzaJson.find((item) => item.id == cart[i].id);
             subtotal += pizzaItem.price * cart[i].quantity;
 
@@ -160,5 +172,6 @@ const updateCart = () => {
         selectElement('.total span:last-child').innerHTML = `R$ ${total.toFixed(2)}`;
     } else {
         selectElement('aside').classList.remove('show');
+        selectElement('aside').style.let = '100vw';
     }
 }
